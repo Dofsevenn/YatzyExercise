@@ -12,8 +12,17 @@ public class YatzyTest {
     }
 
     @Test
-    void shouldCalculateOnes() {
-        assertEquals(1, score(Category.ONES, new int[]{2, 1, 4, 5, 6}));
+    void shouldCalculateForOnes() {
+        assertEquals(0, score(Category.ONES, new int[]{2, 3, 4, 5, 6}));
+        assertEquals(3, score(Category.ONES, new int[]{2, 1, 4, 1, 1}));
+        assertEquals(5, score(Category.ONES, new int[]{1, 1, 1, 1, 1}));
+    }
+
+    @Test
+    void shouldCalculateForTwoa() {
+        assertEquals(0, score(Category.TWOS, new int[]{1, 3, 4, 5, 6}));
+        assertEquals(3, score(Category.TWOS, new int[]{2, 1, 2, 2, 1}));
+        assertEquals(5, score(Category.TWOS, new int[]{2, 2, 2, 2, 2}));
     }
 
     enum Category {
@@ -27,14 +36,8 @@ public class YatzyTest {
             if(rolls[i] == 1) {
                 count += rolls[i];
             }
-            System.out.println(count);
         }
-
-        /*
-      for(int value : rolls) {
-          count += value;
-      } */
-      return count;
+        System.out.println(count + " ones");
+        return count;
     }
-
 }
