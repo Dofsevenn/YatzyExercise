@@ -39,15 +39,49 @@ public class YatzyTest {
         assertEquals(5, score(Category.FOURS, new int[]{4, 4, 4, 4, 4}));
     }
 
+    @Test
+    void shouldCalculateForFives() {
+        assertEquals(0, score(Category.FIVES, new int[]{1, 2, 3, 4, 6}));
+        assertEquals(3, score(Category.FIVES, new int[]{5, 5, 5, 4, 4}));
+        assertEquals(5, score(Category.FIVES, new int[]{5, 5, 5, 5, 5}));
+    }
+
+    @Test
+    void shouldCalculateForSixes() {
+        assertEquals(0, score(Category.SIXES, new int[]{1, 2, 3, 4, 5}));
+        assertEquals(4, score(Category.SIXES, new int[]{6, 5, 6, 6, 6}));
+        assertEquals(5, score(Category.SIXES, new int[]{6, 6, 6, 6, 6}));
+    }
+
     enum Category {
-        ONES, TWOS, THREES, FOURS
+        ONES, TWOS, THREES, FOURS, FIVES, SIXES, PAIR, TWOPAIR, THREEOFKIND, FOUROFKIND, FUULHOUSE, SMALLSTREIGHT,
+        LARGESTRAIGHT, CHANGE, YATZY
+    }
+
+    static int getValue(Category category) {
+
+        int categoryValue = 0;
+
+        switch (category) {
+            case ONES: return categoryValue = 1;
+            case TWOS: return categoryValue = 2;
+            case THREES: return categoryValue = 3;
+            case FOURS: return categoryValue = 4;
+            case FIVES: return categoryValue = 5;
+            case SIXES: return categoryValue = 6;
+
+
+            default:
+                System.err.println("Error: No category was selected");
+                return 0;
+        }
     }
 
     static int score(Category category, int[] rolls) {
         int count = 0;
         if(category == (Category.ONES)) {
             for (int i = 4; i >= 0; i--) {
-                if (rolls[i] == 1) {
+                if (rolls[i] == getValue(category)) {
                     count += rolls[i];
                 }
             }
@@ -55,28 +89,45 @@ public class YatzyTest {
 
         } else if(category == (Category.TWOS)) {
             for (int i = 4; i >= 0; i--) {
-                if (rolls[i] == 2) {
-                    count += rolls[i] / 2;
+                if (rolls[i] == getValue(category)) {
+                    count += rolls[i] / getValue(category);
                 }
             }
             System.out.println(count + " twos");
 
         } else if(category == (Category.THREES)) {
             for (int i = 4; i >= 0; i--) {
-                if (rolls[i] == 3) {
-                    count += rolls[i] / 3;
+                if (rolls[i] == getValue(category)) {
+                    count += rolls[i] / getValue(category);
                 }
             }
             System.out.println(count + " threes");
 
         } else if(category == (Category.FOURS)) {
             for (int i = 4; i >= 0; i--) {
-                if (rolls[i] == 4) {
-                    count += rolls[i] / 4;
+                if (rolls[i] == getValue(category)) {
+                    count += rolls[i] / getValue(category);
                 }
             }
             System.out.println(count + " fours");
+
+        } else if(category == (Category.FIVES)) {
+            for (int i = 4; i >= 0; i--) {
+                if (rolls[i] == getValue(category)) {
+                    count += rolls[i] / getValue(category);
+                }
+            }
+            System.out.println(count + " fives");
+
+        } else if(category == (Category.SIXES)) {
+            for (int i = 4; i >= 0; i--) {
+                if (rolls[i] == getValue(category)) {
+                    count += rolls[i] / getValue(category);
+                }
+            }
+            System.out.println(count + " sixes");
         }
+
         return count;
     }
 }
