@@ -57,8 +57,8 @@ public class YatzyTest {
         ONES, TWOS, THREES, FOURS, FIVES, SIXES, PAIR, TWOPAIR, THREEOFKIND, FOUROFKIND, FUULHOUSE, SMALLSTREIGHT,
         LARGESTRAIGHT, CHANGE, YATZY
     }
+    static int getCategoryValue(Category category) {
 
-    static int getValue(Category category) {
 
         int categoryValue = 0;
 
@@ -80,54 +80,39 @@ public class YatzyTest {
     static int score(Category category, int[] rolls) {
         int count = 0;
         if(category == (Category.ONES)) {
-            for (int i = 4; i >= 0; i--) {
-                if (rolls[i] == getValue(category)) {
-                    count += rolls[i];
-                }
-            }
+            count = getDiceCount(category, rolls, count);
             System.out.println(count + " ones");
 
         } else if(category == (Category.TWOS)) {
-            for (int i = 4; i >= 0; i--) {
-                if (rolls[i] == getValue(category)) {
-                    count += rolls[i] / getValue(category);
-                }
-            }
+            count = getDiceCount(category, rolls, count);
             System.out.println(count + " twos");
 
         } else if(category == (Category.THREES)) {
-            for (int i = 4; i >= 0; i--) {
-                if (rolls[i] == getValue(category)) {
-                    count += rolls[i] / getValue(category);
-                }
-            }
+            count = getDiceCount(category, rolls, count);
             System.out.println(count + " threes");
 
         } else if(category == (Category.FOURS)) {
-            for (int i = 4; i >= 0; i--) {
-                if (rolls[i] == getValue(category)) {
-                    count += rolls[i] / getValue(category);
-                }
-            }
+            count = getDiceCount(category, rolls, count);
             System.out.println(count + " fours");
 
         } else if(category == (Category.FIVES)) {
-            for (int i = 4; i >= 0; i--) {
-                if (rolls[i] == getValue(category)) {
-                    count += rolls[i] / getValue(category);
-                }
-            }
+            count = getDiceCount(category, rolls, count);
             System.out.println(count + " fives");
 
         } else if(category == (Category.SIXES)) {
-            for (int i = 4; i >= 0; i--) {
-                if (rolls[i] == getValue(category)) {
-                    count += rolls[i] / getValue(category);
-                }
-            }
+            count = getDiceCount(category, rolls, count);
             System.out.println(count + " sixes");
         }
 
+        return count;
+    }
+
+    private static int getDiceCount(Category category, int[] rolls, int count) {
+        for (int diceValue = 4; diceValue >= 0; diceValue--) {
+            if (rolls[diceValue] == getCategoryValue(category)) {
+                count += rolls[diceValue] / getCategoryValue(category);
+            }
+        }
         return count;
     }
 }
